@@ -1,4 +1,4 @@
-# Scrapy settings for books_crawler project
+# Scrapy settings for quotes_js project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'books_crawler'
+BOT_NAME = 'quotes_js'
 
-SPIDER_MODULES = ['books_crawler.spiders']
-NEWSPIDER_MODULE = 'books_crawler.spiders'
+SPIDER_MODULES = ['quotes_js.spiders']
+NEWSPIDER_MODULE = 'quotes_js.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'books_crawler (+http://www.yourdomain.com)'
+#USER_AGENT = 'quotes_js (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -45,15 +45,26 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'books_crawler.middlewares.BooksCrawlerSpiderMiddleware': 543,
+#    'quotes_js.middlewares.QuotesJsSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'books_crawler.middlewares.BooksCrawlerDownloaderMiddleware': 543,
-#}
+SPLASH_URL = 'http://localhost:8050'
 
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_splash.SplashCookiesMiddleware': 723,
+    'scrapy_splash.SplashMiddleware': 725,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
+
+SPIDER_MIDDLEWARES = {
+    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
+
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -63,7 +74,7 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'books_crawler.pipelines.BooksCrawlerPipeline': 300,
+#    'quotes_js.pipelines.QuotesJsPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

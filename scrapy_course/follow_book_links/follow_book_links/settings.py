@@ -1,4 +1,4 @@
-# Scrapy settings for books_crawler project
+# Scrapy settings for follow_book_links project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'books_crawler'
+BOT_NAME = 'follow_book_links'
 
-SPIDER_MODULES = ['books_crawler.spiders']
-NEWSPIDER_MODULE = 'books_crawler.spiders'
+SPIDER_MODULES = ['follow_book_links.spiders']
+NEWSPIDER_MODULE = 'follow_book_links.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'books_crawler (+http://www.yourdomain.com)'
+#USER_AGENT = 'follow_book_links (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'books_crawler.middlewares.BooksCrawlerSpiderMiddleware': 543,
+#    'follow_book_links.middlewares.FollowBookLinksSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'books_crawler.middlewares.BooksCrawlerDownloaderMiddleware': 543,
+#    'follow_book_links.middlewares.FollowBookLinksDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'books_crawler.pipelines.BooksCrawlerPipeline': 300,
+#    'follow_book_links.pipelines.FollowBookLinksPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

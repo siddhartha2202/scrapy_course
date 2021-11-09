@@ -8,6 +8,8 @@ authors = ["Emmanuel Martínez <emartinez@seebak.com.mx>"]
 python = "^3.9"
 Scrapy = "^2.5.1"
 ipython = "^7.28.0"
+selenium = "^4.0.0"
+scrapy-splash = "^0.8.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

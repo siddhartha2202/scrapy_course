@@ -1,0 +1,10 @@
+{
+          "scrapy_course/*.py":{
+          "alternate": "tests/{dirname}/{basename}_test.py",
+          "path": "scrapy_course/**",
+          "type": "src"
+          },
+          "tests/*_test.py":{"alternate": "scrapy_course/{}.py",
+          "path": "scrapy_course/**"
+}
+}
