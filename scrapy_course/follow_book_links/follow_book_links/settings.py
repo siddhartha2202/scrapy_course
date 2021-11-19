@@ -72,8 +72,6 @@ ROBOTSTXT_OBEY = False
     #  }
 #  }
 
-#  AWS_ACCESS_KEY_ID = 'AKIASBP2TF4DDVAVHV4L'
-#  AWS_SECRET_ACCESS_KEY = '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'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
