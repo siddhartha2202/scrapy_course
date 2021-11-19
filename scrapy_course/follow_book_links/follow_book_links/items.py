@@ -3,20 +3,13 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 import scrapy
+from abc import ABC
 from itemloaders.processors import TakeFirst, Compose
+from itemadapter import ItemAdapter
+from scrapy.loader import ItemLoader
 
 
-def __get_product_info(self, response, value):
-    return (
-        response
-        .xpath('//th[text()="' + value + '"]/following-sibling::td/text()')
-        .extract_first()
-    )
-
-
-class FollowBookLinksItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+class FollowBookLinksItem(scrapy.item.Item):
     title = scrapy.Field(output_processor=TakeFirst())
 
     price = scrapy.Field(output_processor=TakeFirst())
@@ -72,3 +65,47 @@ class FollowBookLinksItem(scrapy.Item):
     number_of_reviews = scrapy.Field(
         output_processor=TakeFirst()
     )
+
+
+class ItemFactoryAbc(ABC):
+    def get_item(self):
+        pass
+
+
+class ItemJsonFactory(ItemFactoryAbc):
+    def get_item():
+        pass
+
+
+class ItemSelectorFactory(ItemFactoryAbc):
+    def __init__(self, response, extractors, item):
+        self.response = response
+        self.extractors = extractors
+        self.item = item
+
+    def __add_extractors(self, loader: ItemLoader):
+        for extractor in self.extractors:
+            if extractor['type'] == 'xpath':
+                loader.add_xpath(
+                    field_name=extractor['field'],
+                    xpath=extractor['selector']
+                )
+            elif extractor['type'] == 'css':
+                loader.add_css(
+                    field_name=extractor['field'],
+                    css=extractor['selector']
+                )
+            else:
+                loader.add_value(
+                    field_name=extractor['field'],
+                    value=extractor['selector']
+                )
+
+    def get_item(self):
+        loader = ItemLoader(
+            item=self.item(),
+            response=self.response
+        )
+        self.__add_extractors(loader)
+
+        return loader.load_item()

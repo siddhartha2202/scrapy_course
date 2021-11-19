@@ -1,4 +1,4 @@
-# Scrapy settings for follow_book_links project
+# Scrapy settings for craigslist project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -6,17 +6,16 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-import os
 
+BOT_NAME = 'craigslist'
 
-BOT_NAME = 'follow_book_links'
+SPIDER_MODULES = ['craigslist.spiders']
+NEWSPIDER_MODULE = 'craigslist.spiders'
 
-SPIDER_MODULES = ['follow_book_links.spiders']
-NEWSPIDER_MODULE = 'follow_book_links.spiders'
-
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'follow_book_links (+http://www.yourdomain.com)'
-
+DOWNLOADER_CLIENT_TLS_METHOD = "TLSv1.2"
+#  USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) " \
+             #  "AppleWebKit/537.36 (KHTML, like Gecko) " \
+             #  "Chrome/95.0.4638.69 Safari/537.36"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
@@ -43,14 +42,18 @@ ROBOTSTXT_OBEY = False
 #   'Accept-Language': 'en',
 #}
 
+# Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'follow_book_links.middlewares.FollowBookLinksSpiderMiddleware': 543,
+#    'craigslist.middlewares.CraigslistSpiderMiddleware': 543,
 #}
 
-# Enable or disable spider middlewares
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
+#DOWNLOADER_MIDDLEWARES = {
+#    'craigslist.middlewares.CraigslistDownloaderMiddleware': 543,
+#}
+
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -59,21 +62,9 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#  ITEM_PIPELINES = {
-    #  'scrapy.pipelines.files.FilesPipeline': 100  # For files
-#  }
-#
-
-#  FILES_STORE = 's3://scrapy-bucket-140648853254/scrapping/%(name)s/%(time)s.csv'
-#
-#  FEEDS = {
-    #  's3://scrapy-bucket-140648853254/scrapping/%(name)s/%(time)s.csv': {
-        #  'format': 'csv',
-    #  }
-#  }
-
-#  AWS_ACCESS_KEY_ID = 'AKIASBP2TF4DDVAVHV4L'
-#  AWS_SECRET_ACCESS_KEY = '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'
+#ITEM_PIPELINES = {
+#    'craigslist.pipelines.CraigslistPipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

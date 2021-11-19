@@ -1,0 +1,29 @@
+{
+  "extractors": [
+    {
+        "type": "xpath",
+        "field": "title",
+        "selector": "//*[@id=\"content_inner\"]/article//h1/text()"
+    },
+    {
+        "type": "xpath",
+        "field": "description",
+        "selector": "//*[@id=\"content_inner\"]/article/p/text()"
+    },
+    {
+        "type": "xpath",
+        "field": "price",
+        "selector": "//p[@class=\"price_color\"]/text()"
+    },
+    {
+        "type": "xpath",
+        "field": "image_url",
+        "selector": "//*[@id=\"product_gallery\"]//img/@src"
+    },
+    {
+        "type": "xpath",
+        "field": "rating",
+        "selector": "//*[contains(@class, \"star-rating\")]/@class"
+    }
+  ]
+}

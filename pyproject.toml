@@ -10,6 +10,10 @@ Scrapy = "^2.5.1"
 ipython = "^7.28.0"
 selenium = "^4.0.0"
 scrapy-splash = "^0.8.0"
+scrapy-proxy-pool = "^0.1.9"
+botocore = "^1.23.4"
+Pillow = "^8.4.0"
+itemadapter = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
