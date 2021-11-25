@@ -1,7 +1,7 @@
 import scrapy
 import json
 from scrapy.http import Request
-from follow_book_links.items import ItemSelectorFactory, FollowBookLinksItem
+from follow_book_links.items import FactoryAdministrator, FollowBookLinksItem
 from scrapy.utils.conf import closest_scrapy_cfg
 from scrapy.utils.project import get_project_settings
 import os
@@ -46,11 +46,14 @@ class BooksSpider(scrapy.Spider):
             self.extractors.append(extractor)
 
     def __scrape_books(self, response):
-        return ItemSelectorFactory(
-            response=response,
-            extractors=self.extractors,
-            item=FollowBookLinksItem
-        ).get_item()
+        ItemFactory = FactoryAdministrator(
+            'HTML',
+            response,
+            self.extractors,
+            FollowBookLinksItem
+        ).get_factory()
+
+        return ItemFactory.get_item()
 
     def __get_next_page_url(self, response) -> str:
         next_page_url = response.urljoin(

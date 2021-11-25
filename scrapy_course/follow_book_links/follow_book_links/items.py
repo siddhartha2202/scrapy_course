@@ -72,12 +72,29 @@ class ItemFactoryAbc(ABC):
         pass
 
 
+class AdminFactoryAbc(ABC):
+    def get_factory(self):
+        pass
+
+
+class FactoryAdministrator(AdminFactoryAbc):
+    def __init__(self, factoryType, *args):
+        self.factoryType = factoryType
+        self.args = args
+
+    def get_factory(self):
+        if self.factoryType == 'HTML':
+            return ItemHtmlFactory(*self.args)
+        elif self.factoryType == 'JSON':
+            return ItemJsonFactory(*self.args)
+
+
 class ItemJsonFactory(ItemFactoryAbc):
     def get_item():
         pass
 
 
-class ItemSelectorFactory(ItemFactoryAbc):
+class ItemHtmlFactory(ItemFactoryAbc):
     def __init__(self, response, extractors, item):
         self.response = response
         self.extractors = extractors
